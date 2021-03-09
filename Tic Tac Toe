@@ -1,0 +1,279 @@
+package tictactoe;
+import java.util.Scanner;
+
+public class Main {
+    public static char[] sArray = new char[9];
+    public static int sum1, sum2, sum3;
+    public static int xS, oS;
+    public static String coordinates;
+    public static int oddEvencounter = 1;
+    public static int game = 9;
+
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+
+        for (int i = 0; i < sArray.length; i++) {   // string s bliver lavet om til et Chararray.
+            sArray[i] = ' ';
+        }
+
+        grid(sArray);
+
+
+        while (game > 0) {
+
+
+
+
+            System.out.println("Enter the coordinates:");
+
+            while (!input.hasNextInt()) {
+                System.out.println("You should enter numbers!");  // number checker
+                System.out.println("Enter the coordinates:");
+                input.nextLine();
+            }
+
+            coordinates = input.nextLine();
+
+
+            if (coordinates.equals("1 1") || coordinates.equals("1 2") || coordinates.equals("1 3") || coordinates.equals("2 1") || coordinates.equals("2 2") ||
+                    coordinates.equals("2 3") || coordinates.equals("3 1") || coordinates.equals("3 2") || coordinates.equals("3 3")) {
+
+
+                if (coordinates.equals("1 1")) {
+                    if (sArray[0] == ' ') {
+                        if (oddEvencounter % 2 == 1) {
+                            sArray[0] = 'X';
+                            grid(sArray);
+                            oddEvencounter++;
+                            game--;
+
+                        } else {
+                            sArray[0] = 'O';
+                            grid(sArray);
+                            oddEvencounter++;
+                            game--;
+                        }
+
+                    } else
+                        occupied();
+                } else if (coordinates.equals("1 2")) {
+                    if (sArray[1] == ' ') {
+                        if (oddEvencounter % 2 == 1) {
+                            sArray[1] = 'X';
+                            grid(sArray);
+                            oddEvencounter++;
+                            game--;
+
+                        } else {
+                            sArray[1] = 'O';
+                            grid(sArray);
+                            oddEvencounter++;
+                            game--;
+                        }
+
+                    } else
+                        occupied();
+                } else if (coordinates.equals("1 3")) {
+                    if (sArray[2] == ' ') {
+                        if (oddEvencounter % 2 == 1) {
+                            sArray[2] = 'X';
+                            grid(sArray);
+                            oddEvencounter++;
+                            game--;
+                        } else {
+                            sArray[2] = 'O';
+                            grid(sArray);
+                            oddEvencounter++;
+                            game--;
+                        }
+
+                    } else
+                        occupied();
+                } else if (coordinates.equals("2 1")) {
+                    if (sArray[3] == ' ') {
+                        if (oddEvencounter % 2 == 1) {
+                            sArray[3] = 'X';
+                            grid(sArray);
+                            oddEvencounter++;
+                            game--;
+                        } else {
+                            sArray[3] = 'O';
+                            grid(sArray);
+                            oddEvencounter++;
+                            game--;
+                        }
+
+                    } else
+                        occupied();
+                } else if (coordinates.equals("2 2")) {
+                    if (sArray[4] == ' ') {
+                        if (oddEvencounter % 2 == 1) {
+                            sArray[4] = 'X';
+                            grid(sArray);
+                            oddEvencounter++;
+                            game--;
+                        } else {
+                            sArray[4] = 'O';
+                            grid(sArray);
+                            oddEvencounter++;
+                            game--;
+                        }
+
+                    } else
+                        occupied();
+                } else if (coordinates.equals("2 3")) {
+                    if (sArray[5] == ' ') {
+                        if (oddEvencounter % 2 == 1) {
+                            sArray[5] = 'X';
+                            grid(sArray);
+                            oddEvencounter++;
+                            game--;
+                        } else {
+                            sArray[5] = 'O';
+                            grid(sArray);
+                            oddEvencounter++;
+                            game--;
+                        }
+
+                    } else
+                        occupied();
+                } else if (coordinates.equals("3 1")) {
+                    if (sArray[6] == ' ') {
+                        if (oddEvencounter % 2 == 1) {
+                            sArray[6] = 'X';
+                            grid(sArray);
+                            oddEvencounter++;
+                            game--;
+                        } else {
+                            sArray[6] = 'O';
+                            grid(sArray);
+                            oddEvencounter++;
+                            game--;
+                        }
+
+                    } else
+                        occupied();
+                } else if (coordinates.equals("3 2")) {
+                    if (sArray[7] == ' ') {
+                        if (oddEvencounter % 2== 1) {
+                            sArray[7] = 'X';
+                            grid(sArray);
+                            oddEvencounter++;
+                            game--;
+                        } else {
+                            sArray[7] = 'O';
+                            grid(sArray);
+                            oddEvencounter++;
+                            game--;
+                        }
+
+                    } else
+                        occupied();
+                } else if (coordinates.equals("3 3")) {
+                    if (sArray[8] == ' ') {
+                        if (oddEvencounter%2 == 1) {
+                            sArray[8] = 'X';
+                            grid(sArray);
+                            oddEvencounter++;
+                            game--;
+                        } else {
+                            sArray[8] = 'O';
+                            grid(sArray);
+                            oddEvencounter++;
+                            game--;
+
+                        }
+                    } else
+                        occupied();
+                }
+
+            } else
+                System.out.println("Coordinates should be from 1 to 3!");
+
+            gameAnalyse(sArray, xS, oS, sum1, sum2, sum3);
+
+        }
+
+
+
+    }   
+
+
+
+
+
+    ///////////Functions//////////Functions//////////Functions///////////////////Functions//////////Functions///
+
+    public static void gameAnalyse(char sArray[], int xS, int oS, int sum1, int sum2, int sum3) {
+
+
+        for (int i = 1; i <= 7; i += 3) {  // vandrette linjer
+            sum1 = sArray[i - 1];
+            sum2 = sArray[i];
+            sum3 = sArray[i + 1];
+            if ((sum1 + sum2 + sum3) == 264) {
+                System.out.println("X wins");
+                System.exit(0);
+            } else if ((sum1 + sum2 + sum3) == 237) {
+                System.out.println("O wins");
+                System.exit(0);
+            }
+        }
+
+        for (int i = 1; i <= 3; i++) {   // lodrette linjer
+            sum1 = sArray[i - 1];
+            sum2 = sArray[i + 2];
+            sum3 = sArray[i + 5];
+            if (sum1 + sum2 + sum3 == 264) {
+                System.out.println("X wins");
+                System.exit(0);
+            } else if ((sum1 + sum2 + sum3) == 237) {
+                System.out.println("O wins");
+                System.exit(0);
+            }
+        }
+
+        if (sArray[0] + sArray[4] + sArray[8] == 264 || sArray[2] + sArray[4] + sArray[6] == 264) {
+            System.out.println("X wins");
+            System.exit(0);
+        } else if (sArray[0] + sArray[4] + sArray[8] == 237 || sArray[2] + sArray[4] + sArray[6] == 237) {
+            System.out.println("O wins");
+            System.exit(0);
+        } else if (game == 0 ) {
+            System.out.println("Draw");
+            System.exit(0);
+        }
+
+
+    }
+
+
+
+
+
+    public static void grid(char sArray[])  {
+        System.out.println("---------");
+
+        System.out.println("| " + sArray[0] + " " +
+                sArray[1] + " " + sArray[2] + " |");
+
+        System.out.println("| " + sArray[3] + " " +
+                sArray[4] + " " + sArray[5] + " |");
+
+        System.out.println("| " + sArray[6] + " " + sArray[7] + " " +
+                sArray[8] + " |");
+
+        System.out.println("---------");
+    }
+
+    public static void occupied() {
+        System.out.println("This cell is occupied! Choose another one!");
+    }
+
+
+
+
+}
+
